@@ -18,4 +18,15 @@ scrape_configs:
   #     - targets: ['URL_GOES_HERE']
   #   basic_auth:
   #     username: HTTP_AUTH_USERNAME_GOES_HERE
-  #     password: HTTP_AUTH_PASSWORD_GOES_HERE
+  #     password: HTTP_AUTH_PASSWORD_GOES_HERE%
+
+  - job_name: supabase-${SUPABASE_PROJECT_REF}
+    scheme: https
+    metrics_path: "/customer/v1/privileged/metrics"
+    params:
+      supabase_grafana: ["true"]
+    basic_auth:
+      username: service_role
+      password: ${SUPABASE_SERVICE_ROLE_KEY}
+    static_configs:
+      - targets: ["${SUPABASE_PROJECT_REF}.supabase.co"]

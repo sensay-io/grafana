@@ -37,7 +37,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "Busy state of all CPU cores together",
       "fieldConfig": {
@@ -104,7 +104,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "clamp_min(100 - (avg(rate(node_cpu_seconds_total{mode=\"idle\", supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])) by (instance) * 100), 0)",
           "hide": false,
@@ -120,7 +120,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "Busy state of all CPU cores together (5 min average)",
       "fieldConfig": {
@@ -187,7 +187,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "avg(node_load5{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) /  count(count(node_cpu_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) by (cpu)) * 100",
           "format": "time_series",
@@ -203,7 +203,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "Busy state of all CPU cores together (15 min average)",
       "fieldConfig": {
@@ -270,7 +270,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "avg(node_load15{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) /  count(count(node_cpu_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) by (cpu)) * 100",
           "hide": false,
@@ -285,7 +285,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "Non available RAM memory",
       "fieldConfig": {
@@ -343,7 +343,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "((node_memory_MemTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_MemFree_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) / (node_memory_MemTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} )) * 100",
           "format": "time_series",
@@ -355,7 +355,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "100 - ((node_memory_MemAvailable_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} * 100) / node_memory_MemTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"})",
           "format": "time_series",
@@ -371,7 +371,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "Used Swap",
       "fieldConfig": {
@@ -438,7 +438,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "((node_memory_SwapTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_SwapFree_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) / (node_memory_SwapTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} )) * 100",
           "intervalFactor": 1,
@@ -452,7 +452,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "Used Root FS",
       "fieldConfig": {
@@ -519,7 +519,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "100 - ((node_filesystem_avail_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",mountpoint=\"/\",fstype!=\"rootfs\"} * 100) / node_filesystem_size_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",mountpoint=\"/\",fstype!=\"rootfs\"})",
           "format": "time_series",
@@ -534,7 +534,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "Total number of CPU cores",
       "fieldConfig": {
@@ -598,7 +598,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "count(count(node_cpu_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) by (cpu))",
           "interval": "",
@@ -614,7 +614,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "System uptime",
       "fieldConfig": {
@@ -679,7 +679,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "node_time_seconds{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_boot_time_seconds{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
@@ -696,7 +696,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "Total SWAP",
       "fieldConfig": {
@@ -761,7 +761,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "node_memory_SwapTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
           "intervalFactor": 1,
@@ -775,7 +775,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "Total RootFS",
       "fieldConfig": {
@@ -844,7 +844,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "node_filesystem_size_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",mountpoint=\"/\",fstype!=\"rootfs\"}",
@@ -863,7 +863,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "Total data disk capacity",
       "fieldConfig": {
@@ -932,7 +932,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "node_filesystem_size_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",mountpoint=\"/data\",fstype!=\"rootfs\"}",
@@ -952,7 +952,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "Total RAM",
       "fieldConfig": {
@@ -1017,7 +1017,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "node_memory_MemTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
           "intervalFactor": 1,
@@ -1044,7 +1044,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "Basic CPU info",
       "fieldConfig": {
@@ -1418,7 +1418,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "sum by (instance)(rate(node_cpu_seconds_total{mode=\"system\",supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])) * 100",
           "format": "time_series",
@@ -1431,7 +1431,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "sum by (instance)(rate(node_cpu_seconds_total{mode='user',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])) * 100",
           "format": "time_series",
@@ -1444,7 +1444,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "sum by (instance)(rate(node_cpu_seconds_total{mode='iowait',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])) * 100",
           "format": "time_series",
@@ -1456,7 +1456,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "sum by (instance)(rate(node_cpu_seconds_total{mode=~\".*irq\",supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])) * 100",
           "format": "time_series",
@@ -1468,7 +1468,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "sum (rate(node_cpu_seconds_total{mode!='idle',mode!='user',mode!='system',mode!='iowait',mode!='irq',mode!='softirq',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])) * 100",
           "format": "time_series",
@@ -1480,7 +1480,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='idle',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])) * 100",
           "format": "time_series",
@@ -1496,7 +1496,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "Basic memory usage",
       "fieldConfig": {
@@ -1953,7 +1953,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "node_memory_MemTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
           "format": "time_series",
@@ -1966,7 +1966,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "node_memory_MemTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_MemFree_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - (node_memory_Cached_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} + node_memory_Buffers_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"})",
           "format": "time_series",
@@ -1979,7 +1979,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "node_memory_Cached_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} + node_memory_Buffers_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
           "format": "time_series",
@@ -1991,7 +1991,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "node_memory_MemFree_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
           "format": "time_series",
@@ -2003,7 +2003,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "(node_memory_SwapTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_SwapFree_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"})",
           "format": "time_series",
@@ -2019,7 +2019,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "Basic network info per interface",
       "fieldConfig": {
@@ -2463,7 +2463,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "rate(node_network_receive_bytes_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])*8",
           "format": "time_series",
@@ -2475,7 +2475,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "rate(node_network_transmit_bytes_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])*8",
           "format": "time_series",
@@ -2491,7 +2491,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "Disk space used of all filesystems mounted",
       "fieldConfig": {
@@ -2591,7 +2591,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "expr": "100 - ((node_filesystem_avail_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device!~'rootfs'} * 100) / node_filesystem_size_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device!~'rootfs'})",
           "format": "time_series",
@@ -2620,7 +2620,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "Disk space used by the database",
       "fieldConfig": {
@@ -2703,7 +2703,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "pg_database_size_mb{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
@@ -2721,7 +2721,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "Active number of client connections",
       "fieldConfig": {
@@ -2817,7 +2817,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "pg_stat_database_num_backends{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
@@ -2831,7 +2831,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "sum(supavisor_connections_active{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"})",
@@ -2845,7 +2845,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "pgbouncer_used_clients{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
@@ -2860,7 +2860,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "sum by (Name) (pgbouncer_pools_client_waiting_connections{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"})",
@@ -2879,7 +2879,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -2951,7 +2951,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "pg_up{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
@@ -2966,7 +2966,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -3038,7 +3038,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "pgbouncer_up{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
@@ -3053,7 +3053,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "",
       "fieldConfig": {
@@ -3156,7 +3156,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "rate(supabase_usage_metrics_user_queries_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
@@ -3170,7 +3170,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "rate(pg_stat_statements_total_queries{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
@@ -3182,7 +3182,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "rate(pg_stat_statements_total_time_seconds{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
@@ -3199,7 +3199,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "",
       "fieldConfig": {
@@ -3299,7 +3299,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "rate(pg_stat_database_xact_commit_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
@@ -3313,7 +3313,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "rate(pg_stat_database_xact_rollback_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
@@ -3328,7 +3328,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "rate(pg_stat_database_deadlocks_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
@@ -3347,7 +3347,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "",
       "fieldConfig": {
@@ -3450,7 +3450,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "rate(pg_stat_database_conflicts_confl_tablespace_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
@@ -3464,7 +3464,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "rate(pg_stat_database_conflicts_confl_lock_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
@@ -3479,7 +3479,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "rate(pg_stat_database_conflicts_confl_snapshot_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
@@ -3494,7 +3494,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "rate(pg_stat_database_conflicts_confl_bufferpin_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
@@ -3509,7 +3509,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "rate(pg_stat_database_conflicts_confl_deadlock_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
@@ -3528,7 +3528,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -3602,7 +3602,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "pg_settings_default_transaction_read_only{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
@@ -3618,7 +3618,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -3691,7 +3691,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "pg_status_in_recovery{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
@@ -3719,7 +3719,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "Realtime replication status",
       "fieldConfig": {
@@ -3792,7 +3792,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "replication_realtime_slot_status{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
@@ -3807,7 +3807,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "",
       "fieldConfig": {
@@ -3889,7 +3889,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "replication_realtime_lag_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
@@ -3920,7 +3920,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "",
       "fieldConfig": {
@@ -4011,7 +4011,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "rate(pg_stat_bgwriter_checkpoints_timed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
@@ -4025,7 +4025,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "rate(pg_stat_bgwriter_checkpoints_req_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
@@ -4040,7 +4040,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "rate(pg_stat_bgwriter_checkpoint_write_time_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
@@ -4055,7 +4055,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "rate(pg_stat_bgwriter_checkpoint_sync_time_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
@@ -4074,7 +4074,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "",
       "fieldConfig": {
@@ -4161,7 +4161,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "rate(pg_stat_bgwriter_buffers_checkpoint_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
@@ -4175,7 +4175,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "rate(pg_stat_bgwriter_buffers_clean_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
@@ -4190,7 +4190,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "rate(pg_stat_bgwriter_buffers_backend_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
@@ -4205,7 +4205,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "rate(pg_stat_bgwriter_buffers_alloc_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
@@ -4224,7 +4224,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "grafana_prometheus"
       },
       "description": "",
       "fieldConfig": {
@@ -4311,7 +4311,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "rate(pg_stat_bgwriter_maxwritten_clean_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
@@ -4325,7 +4325,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "exemplar": false,
           "expr": "rate(pg_stat_bgwriter_buffers_backend_fsync_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
@@ -4354,7 +4354,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -4380,7 +4380,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode=\"system\",supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])) * 100",
               "format": "time_series",
@@ -4393,7 +4393,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='user',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])) * 100",
               "format": "time_series",
@@ -4405,7 +4405,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='nice',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])) * 100",
               "format": "time_series",
@@ -4417,7 +4417,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='idle',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])) * 100",
               "format": "time_series",
@@ -4429,7 +4429,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='iowait',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])) * 100",
               "format": "time_series",
@@ -4441,7 +4441,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='irq',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])) * 100",
               "format": "time_series",
@@ -4453,7 +4453,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='softirq',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])) * 100",
               "format": "time_series",
@@ -4465,7 +4465,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='steal',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])) * 100",
               "format": "time_series",
@@ -4477,7 +4477,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='guest',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])) * 100",
               "format": "time_series",
@@ -4493,7 +4493,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -4519,7 +4519,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_MemTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_MemFree_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_Buffers_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_Cached_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_Slab_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_PageTables_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_SwapCached_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -4532,7 +4532,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_PageTables_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -4545,7 +4545,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_SwapCached_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -4557,7 +4557,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_Slab_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -4570,7 +4570,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_Cached_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -4583,7 +4583,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_Buffers_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -4596,7 +4596,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_MemFree_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -4609,7 +4609,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "(node_memory_SwapTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_SwapFree_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"})",
               "format": "time_series",
@@ -4622,7 +4622,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_HardwareCorrupted_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -4639,7 +4639,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -4663,7 +4663,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_network_receive_bytes_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])*8",
               "format": "time_series",
@@ -4675,7 +4675,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_network_transmit_bytes_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])*8",
               "format": "time_series",
@@ -4691,7 +4691,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -4717,7 +4717,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_filesystem_size_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device!~'rootfs'} - node_filesystem_avail_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device!~'rootfs'}",
               "format": "time_series",
@@ -4733,7 +4733,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -4759,7 +4759,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_disk_reads_completed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device=~\"$diskdevices\"}[$__rate_interval])",
               "intervalFactor": 1,
@@ -4770,7 +4770,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_disk_writes_completed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device=~\"$diskdevices\"}[$__rate_interval])",
               "intervalFactor": 1,
@@ -4785,7 +4785,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -4811,7 +4811,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_disk_read_bytes_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device=~\"$diskdevices\"}[$__rate_interval])",
               "format": "time_series",
@@ -4824,7 +4824,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_disk_written_bytes_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device=~\"$diskdevices\"}[$__rate_interval])",
               "format": "time_series",
@@ -4841,7 +4841,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -4867,7 +4867,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_disk_io_time_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device=~\"$diskdevices\"} [$__rate_interval])",
               "format": "time_series",
@@ -4899,7 +4899,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -4920,7 +4920,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_Inactive_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -4932,7 +4932,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_Active_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -4948,7 +4948,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -4969,7 +4969,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_Committed_AS_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -4981,7 +4981,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_CommitLimit_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -4997,7 +4997,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -5018,7 +5018,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_Inactive_file_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5031,7 +5031,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_Inactive_anon_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5044,7 +5044,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_Active_file_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5057,7 +5057,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_Active_anon_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5074,7 +5074,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -5095,7 +5095,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_Writeback_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5107,7 +5107,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_WritebackTmp_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5119,7 +5119,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_Dirty_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5135,7 +5135,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -5156,7 +5156,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_Mapped_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5168,7 +5168,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_Shmem_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5180,7 +5180,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_ShmemHugePages_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5193,7 +5193,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_ShmemPmdMapped_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5210,7 +5210,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -5231,7 +5231,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_SUnreclaim_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5243,7 +5243,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_SReclaimable_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5259,7 +5259,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -5280,7 +5280,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_VmallocChunk_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5293,7 +5293,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_VmallocTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5306,7 +5306,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_VmallocUsed_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5323,7 +5323,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -5344,7 +5344,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_Bounce_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5360,7 +5360,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -5381,7 +5381,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_AnonHugePages_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5393,7 +5393,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_AnonPages_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5409,7 +5409,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -5430,7 +5430,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_KernelStack_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5442,7 +5442,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_Percpu_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5459,7 +5459,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -5480,7 +5480,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_HugePages_Free{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5492,7 +5492,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_HugePages_Rsvd{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5504,7 +5504,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_HugePages_Surp{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5520,7 +5520,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -5541,7 +5541,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_HugePages_Total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5553,7 +5553,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_Hugepagesize_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5569,7 +5569,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -5590,7 +5590,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_DirectMap1G_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5602,7 +5602,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_DirectMap2M_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5615,7 +5615,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_DirectMap4k_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5632,7 +5632,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -5653,7 +5653,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_Unevictable_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5665,7 +5665,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_Mlocked_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5681,7 +5681,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -5702,7 +5702,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_memory_NFS_Unstable_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5732,7 +5732,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -5753,7 +5753,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_vmstat_pgpgin{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -5765,7 +5765,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_vmstat_pgpgout{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -5781,7 +5781,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -5802,7 +5802,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_vmstat_pswpin{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -5814,7 +5814,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_vmstat_pswpout{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -5830,7 +5830,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -5851,7 +5851,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_vmstat_pgfault{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -5863,7 +5863,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_vmstat_pgmajfault{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -5875,7 +5875,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_vmstat_pgfault{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])  - rate(node_vmstat_pgmajfault{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -5891,7 +5891,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -5912,7 +5912,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_vmstat_oom_kill{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -5943,7 +5943,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -5964,7 +5964,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_timex_estimated_error_seconds{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5978,7 +5978,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_timex_offset_seconds{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -5992,7 +5992,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_timex_maxerror_seconds{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6010,7 +6010,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -6031,7 +6031,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_timex_loop_time_constant{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6048,7 +6048,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -6069,7 +6069,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_timex_sync_status{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6082,7 +6082,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_timex_frequency_adjustment_ratio{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6099,7 +6099,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -6120,7 +6120,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_timex_tick_seconds{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6133,7 +6133,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_timex_tai_offset_seconds{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6164,7 +6164,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -6185,7 +6185,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_procs_blocked{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6197,7 +6197,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_procs_running{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6213,7 +6213,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -6234,7 +6234,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_processes_state{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6251,7 +6251,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -6272,7 +6272,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_forks_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -6289,7 +6289,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -6309,7 +6309,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(process_virtual_memory_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "hide": false,
@@ -6322,7 +6322,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "process_resident_memory_max_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "hide": false,
@@ -6335,7 +6335,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(process_virtual_memory_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "hide": false,
@@ -6348,7 +6348,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(process_virtual_memory_max_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "hide": false,
@@ -6365,7 +6365,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -6386,7 +6386,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_processes_pids{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6399,7 +6399,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_processes_max_processes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6416,7 +6416,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -6437,7 +6437,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_schedstat_running_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -6450,7 +6450,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_schedstat_waiting_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -6467,7 +6467,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -6488,7 +6488,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_processes_threads{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6501,7 +6501,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_processes_max_threads{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6532,7 +6532,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -6553,7 +6553,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_context_switches_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -6565,7 +6565,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_intr_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -6582,7 +6582,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -6603,7 +6603,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_load1{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6615,7 +6615,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_load5{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6627,7 +6627,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_load15{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6643,7 +6643,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -6663,7 +6663,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_interrupts_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -6680,7 +6680,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -6701,7 +6701,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_schedstat_timeslices_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -6718,7 +6718,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -6739,7 +6739,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_entropy_available_bits{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6755,7 +6755,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -6776,7 +6776,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(process_cpu_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -6793,7 +6793,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -6813,7 +6813,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "process_max_fds{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "interval": "",
@@ -6825,7 +6825,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "process_open_fds{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "interval": "",
@@ -6855,7 +6855,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -6875,7 +6875,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_hwmon_temp_celsius{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6888,7 +6888,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_hwmon_temp_crit_alarm_celsius{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6902,7 +6902,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_hwmon_temp_crit_celsius{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6915,7 +6915,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_hwmon_temp_crit_hyst_celsius{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6929,7 +6929,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_hwmon_temp_max_celsius{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6947,7 +6947,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -6967,7 +6967,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_cooling_device_cur_state{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6981,7 +6981,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_cooling_device_max_state{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -6998,7 +6998,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -7018,7 +7018,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_power_supply_online{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -7050,7 +7050,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -7070,7 +7070,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_systemd_socket_accepted_connections_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -7087,7 +7087,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -7107,7 +7107,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_systemd_units{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",state=\"activating\"}",
               "format": "time_series",
@@ -7120,7 +7120,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_systemd_units{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",state=\"active\"}",
               "format": "time_series",
@@ -7133,7 +7133,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_systemd_units{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",state=\"deactivating\"}",
               "format": "time_series",
@@ -7146,7 +7146,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_systemd_units{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",state=\"failed\"}",
               "format": "time_series",
@@ -7159,7 +7159,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_systemd_units{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",state=\"inactive\"}",
               "format": "time_series",
@@ -7190,7 +7190,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "The number (after merges) of I/O requests completed per second for the device",
           "fieldConfig": {
@@ -7216,7 +7216,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_disk_reads_completed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "intervalFactor": 1,
@@ -7227,7 +7227,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_disk_writes_completed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "intervalFactor": 1,
@@ -7242,7 +7242,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "The number of bytes read from or written to the device per second",
           "fieldConfig": {
@@ -7268,7 +7268,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_disk_read_bytes_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -7280,7 +7280,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_disk_written_bytes_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -7296,7 +7296,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "The average time for requests issued to the device to be served. This includes the time spent by the requests in queue and the time spent servicing them.",
           "fieldConfig": {
@@ -7322,7 +7322,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_disk_read_time_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval]) / rate(node_disk_reads_completed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "hide": false,
@@ -7335,7 +7335,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_disk_write_time_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval]) / rate(node_disk_writes_completed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "hide": false,
@@ -7352,7 +7352,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "The average queue length of the requests that were issued to the device",
           "fieldConfig": {
@@ -7378,7 +7378,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_disk_io_time_weighted_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "interval": "",
@@ -7394,7 +7394,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "The number of read and write requests merged per second that were queued to the device",
           "fieldConfig": {
@@ -7420,7 +7420,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_disk_reads_merged_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "intervalFactor": 1,
@@ -7431,7 +7431,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_disk_writes_merged_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "intervalFactor": 1,
@@ -7446,7 +7446,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "Percentage of elapsed time during which I/O requests were issued to the device (bandwidth utilization for the device). Device saturation occurs when this value is close to 100% for devices serving requests serially.  But for devices  serving requests in parallel, such as RAID arrays and modern SSDs, this number does not reflect their performance limits.",
           "fieldConfig": {
@@ -7472,7 +7472,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_disk_io_time_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "interval": "",
@@ -7484,7 +7484,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_disk_discard_time_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "interval": "",
@@ -7500,7 +7500,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "The number of outstanding requests at the instant the sample was taken. Incremented as requests are given to appropriate struct request_queue and decremented as they finish.",
           "fieldConfig": {
@@ -7526,7 +7526,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_disk_io_now{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"})",
               "interval": "",
@@ -7542,7 +7542,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -7568,7 +7568,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_disk_discards_completed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "interval": "",
@@ -7580,7 +7580,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_disk_discards_merged_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "interval": "",
@@ -7610,7 +7610,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -7636,7 +7636,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_filesystem_avail_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device!~'rootfs'}",
               "format": "time_series",
@@ -7650,7 +7650,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_filesystem_free_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device!~'rootfs'}",
               "format": "time_series",
@@ -7663,7 +7663,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_filesystem_size_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device!~'rootfs'}",
               "format": "time_series",
@@ -7680,7 +7680,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -7705,7 +7705,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_filesystem_files_free{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device!~'rootfs'}",
               "format": "time_series",
@@ -7722,7 +7722,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -7748,7 +7748,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_filefd_maximum{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -7760,7 +7760,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_filefd_allocated{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -7776,7 +7776,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -7801,7 +7801,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_filesystem_files{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device!~'rootfs'}",
               "format": "time_series",
@@ -7818,7 +7818,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -7844,7 +7844,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_filesystem_readonly{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device!~'rootfs'}",
               "format": "time_series",
@@ -7856,7 +7856,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_filesystem_device_error{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device!~'rootfs',fstype!~'tmpfs'}",
               "format": "time_series",
@@ -7887,7 +7887,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -7907,7 +7907,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_network_receive_packets_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -7920,7 +7920,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_network_transmit_packets_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -7937,7 +7937,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -7957,7 +7957,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_network_receive_errs_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -7969,7 +7969,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_network_transmit_errs_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -7985,7 +7985,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -8005,7 +8005,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_network_receive_drop_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -8017,7 +8017,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_network_transmit_drop_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -8033,7 +8033,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -8053,7 +8053,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_network_receive_compressed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -8065,7 +8065,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_network_transmit_compressed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -8081,7 +8081,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -8101,7 +8101,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_network_receive_multicast_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -8117,7 +8117,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -8137,7 +8137,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_network_receive_fifo_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -8149,7 +8149,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_network_transmit_fifo_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -8165,7 +8165,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -8185,7 +8185,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_network_receive_frame_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -8202,7 +8202,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -8222,7 +8222,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_network_transmit_carrier_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -8238,7 +8238,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -8258,7 +8258,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_network_transmit_colls_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -8274,7 +8274,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -8294,7 +8294,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_nf_conntrack_entries{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -8306,7 +8306,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_nf_conntrack_entries_limit{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -8322,7 +8322,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -8342,7 +8342,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_arp_entries{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -8358,7 +8358,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -8378,7 +8378,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_network_mtu_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -8394,7 +8394,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -8414,7 +8414,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_network_speed_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -8430,7 +8430,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -8450,7 +8450,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_network_transmit_queue_length{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -8466,7 +8466,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -8486,7 +8486,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_softnet_processed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -8499,7 +8499,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_softnet_dropped_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -8516,7 +8516,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -8536,7 +8536,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_softnet_times_squeezed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -8553,7 +8553,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {},
@@ -8573,7 +8573,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_network_up{operstate=\"up\",supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -8585,7 +8585,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_network_carrier{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -8614,7 +8614,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -8638,7 +8638,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_sockstat_TCP_alloc{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -8651,7 +8651,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_sockstat_TCP_inuse{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -8664,7 +8664,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_sockstat_TCP_mem{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -8678,7 +8678,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_sockstat_TCP_orphan{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -8691,7 +8691,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_sockstat_TCP_tw{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -8708,7 +8708,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -8732,7 +8732,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_sockstat_UDPLITE_inuse{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -8745,7 +8745,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_sockstat_UDP_inuse{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -8758,7 +8758,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_sockstat_UDP_mem{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -8775,7 +8775,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -8799,7 +8799,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_sockstat_FRAG_inuse{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -8812,7 +8812,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_sockstat_RAW_inuse{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -8829,7 +8829,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -8853,7 +8853,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_sockstat_TCP_mem_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -8866,7 +8866,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_sockstat_UDP_mem_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -8879,7 +8879,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_sockstat_FRAG_memory{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "interval": "",
@@ -8894,7 +8894,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -8918,7 +8918,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_sockstat_sockets_used{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -8949,7 +8949,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -8974,7 +8974,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_IpExt_InOctets{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -8987,7 +8987,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_IpExt_OutOctets{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -9003,7 +9003,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -9027,7 +9027,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_Ip_Forwarding{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -9044,7 +9044,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -9069,7 +9069,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_Icmp_InMsgs{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -9082,7 +9082,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_Icmp_OutMsgs{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -9099,7 +9099,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -9124,7 +9124,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_Icmp_InErrors{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -9141,7 +9141,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -9166,7 +9166,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_Udp_InDatagrams{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -9179,7 +9179,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_Udp_OutDatagrams{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -9196,7 +9196,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -9221,7 +9221,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_Udp_InErrors{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -9234,7 +9234,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_Udp_NoPorts{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -9247,7 +9247,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_UdpLite_InErrors{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "interval": "",
@@ -9257,7 +9257,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_Udp_RcvbufErrors{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -9270,7 +9270,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_Udp_SndbufErrors{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -9287,7 +9287,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -9312,7 +9312,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_Tcp_InSegs{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -9326,7 +9326,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_Tcp_OutSegs{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -9343,7 +9343,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -9369,7 +9369,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_TcpExt_ListenOverflows{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -9383,7 +9383,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_TcpExt_ListenDrops{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -9397,7 +9397,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_TcpExt_TCPSynRetrans{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -9410,7 +9410,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_Tcp_RetransSegs{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "interval": "",
@@ -9420,7 +9420,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_Tcp_InErrs{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "interval": "",
@@ -9430,7 +9430,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_Tcp_OutRsts{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "interval": "",
@@ -9444,7 +9444,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -9469,7 +9469,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_netstat_Tcp_CurrEstab{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -9483,7 +9483,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_netstat_Tcp_MaxConn{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -9501,7 +9501,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -9527,7 +9527,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_TcpExt_SyncookiesFailed{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -9541,7 +9541,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_TcpExt_SyncookiesRecv{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -9555,7 +9555,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_TcpExt_SyncookiesSent{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -9573,7 +9573,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -9598,7 +9598,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_Tcp_ActiveOpens{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -9611,7 +9611,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "rate(node_netstat_Tcp_PassiveOpens{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$__rate_interval])",
               "format": "time_series",
@@ -9642,7 +9642,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -9663,7 +9663,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_scrape_collector_duration_seconds{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -9681,7 +9681,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "grafana_prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -9702,7 +9702,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_scrape_collector_success{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -9716,7 +9716,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus"
+                "uid": "grafana_prometheus"
               },
               "expr": "node_textfile_scrape_error{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
               "format": "time_series",
@@ -9749,7 +9749,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "grafana_prometheus"
         },
         "definition": "label_values(supabase_project_ref)",
         "includeAll": false,
@@ -9790,7 +9790,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "grafana_prometheus"
         },
         "definition": "label_values(supabase_identifier)",
         "includeAll": false,

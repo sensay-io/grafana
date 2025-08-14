@@ -4007,7 +4007,8 @@
           "fieldConfig": {
             "defaults": {
               "custom": {},
-              "links": []
+              "links": [],
+              "unit": "bytes"
             },
             "overrides": []
           },
@@ -4101,7 +4102,8 @@
           "fieldConfig": {
             "defaults": {
               "custom": {},
-              "links": []
+              "links": [],
+              "unit": "binBps"
             },
             "overrides": []
           },
@@ -5512,7 +5514,8 @@
           "fieldConfig": {
             "defaults": {
               "custom": {},
-              "links": []
+              "links": [],
+              "unit": "binBps"
             },
             "overrides": []
           },
@@ -5880,7 +5883,8 @@
           "fieldConfig": {
             "defaults": {
               "custom": {},
-              "links": []
+              "links": [],
+              "unit": "bytes"
             },
             "overrides": []
           },

@@ -9744,8 +9744,8 @@
     "list": [
       {
         "current": {
-          "text": "qfsrmwxxufryrczocwuj",
-          "value": "qfsrmwxxufryrczocwuj"
+          "text": "hwlsqrpfedewxklmmapg",
+          "value": "hwlsqrpfedewxklmmapg"
         },
         "datasource": {
           "type": "prometheus",
@@ -9785,8 +9785,8 @@
       {
         "allowCustomValue": false,
         "current": {
-          "text": "qfsrmwxxufryrczocwuj",
-          "value": "qfsrmwxxufryrczocwuj"
+          "text": "hwlsqrpfedewxklmmapg",
+          "value": "hwlsqrpfedewxklmmapg"
         },
         "datasource": {
           "type": "prometheus",

@@ -4761,7 +4761,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_disk_reads_completed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device=~\"$diskdevices\"}[$__rate_interval])",
+              "expr": "rate(node_disk_reads_completed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"$supabase_identifier\",device=~\"$diskdevices\"}[$disk_rate_interval])",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Reads completed",
               "refId": "A",
@@ -4772,7 +4772,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_disk_writes_completed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device=~\"$diskdevices\"}[$__rate_interval])",
+              "expr": "rate(node_disk_writes_completed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"$supabase_identifier\",device=~\"$diskdevices\"}[$disk_rate_interval])",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Writes completed",
               "refId": "B",
@@ -9780,6 +9780,35 @@
           }
         ],
         "query": "[a-z]+|nvme[0-9]+n[0-9]+|mmcblk[0-9]+",
+        "type": "custom"
+      },
+      {
+        "current": {
+          "text": "5m",
+          "value": "5m"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "label": "Disk Rate Interval",
+        "name": "disk_rate_interval",
+        "options": [
+          {
+            "selected": true,
+            "text": "5m",
+            "value": "5m"
+          },
+          {
+            "selected": false,
+            "text": "10m",
+            "value": "10m"
+          },
+          {
+            "selected": false,
+            "text": "15m",
+            "value": "15m"
+          }
+        ],
+        "query": "5m,10m,15m",
         "type": "custom"
       },
       {

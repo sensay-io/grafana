@@ -6606,16 +6606,16 @@
     "list": [
       {
         "current": {
-          "text": "hwlsqrpfedewxklmmapg",
-          "value": "hwlsqrpfedewxklmmapg"
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": {
           "type": "prometheus",
           "uid": "grafana_prometheus"
         },
         "definition": "label_values(supabase_project_ref)",
-        "includeAll": false,
-        "label": "Project Ref",
+        "includeAll": true,
+        "label": "Supabase Project",
         "name": "project",
         "options": [],
         "query": {

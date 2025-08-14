@@ -12,8 +12,15 @@ services:
     volumes:
       - prometheus_data:/prometheus
     environment:
-      - SUPABASE_SERVICE_ROLE_KEY:${SUPABASE_SERVICE_ROLE_KEY}
-      - SUPABASE_PROJECT_REF:${SUPABASE_PROJECT_REF}
+      # Project 1 (your existing project)
+      - SUPABASE_PROJECT_1_REF=${SUPABASE_PROJECT_1_REF}
+      - SUPABASE_PROJECT_1_SERVICE_ROLE_KEY=${SUPABASE_PROJECT_1_SERVICE_ROLE_KEY}
+      # Project 2 (new project)
+      - SUPABASE_PROJECT_2_REF=${SUPABASE_PROJECT_2_REF}
+      - SUPABASE_PROJECT_2_SERVICE_ROLE_KEY=${SUPABASE_PROJECT_2_SERVICE_ROLE_KEY}
+      # Add more projects as needed:
+      # - SUPABASE_PROJECT_3_REF=${SUPABASE_PROJECT_3_REF}
+      # - SUPABASE_PROJECT_3_SERVICE_ROLE_KEY=${SUPABASE_PROJECT_3_SERVICE_ROLE_KEY}
 
   loki:
     build:

@@ -108,7 +108,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "clamp_min(100 - (avg(rate(node_cpu_seconds_total{mode=\"idle\", supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])) by (instance) * 100), 0)",
+          "expr": "clamp_min(100 - (avg(rate(node_cpu_seconds_total{mode=\"idle\", supabase_project_ref=\"$project\"}[$custom_rate_interval])) by (instance) * 100), 0)",
           "hide": false,
           "intervalFactor": 1,
           "legendFormat": "",
@@ -193,7 +193,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "avg(node_load5{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) /  count(count(node_cpu_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) by (cpu)) * 100",
+          "expr": "avg(node_load5{supabase_project_ref=\"$project\"}) /  count(count(node_cpu_seconds_total{supabase_project_ref=\"$project\"}) by (cpu)) * 100",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -278,7 +278,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "avg(node_load15{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) /  count(count(node_cpu_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) by (cpu)) * 100",
+          "expr": "avg(node_load15{supabase_project_ref=\"$project\"}) /  count(count(node_cpu_seconds_total{supabase_project_ref=\"$project\"}) by (cpu)) * 100",
           "hide": false,
           "intervalFactor": 1,
           "refId": "A",
@@ -353,7 +353,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "((node_memory_MemTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_MemFree_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) / (node_memory_MemTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} )) * 100",
+          "expr": "((node_memory_MemTotal_bytes{supabase_project_ref=\"$project\"} - node_memory_MemFree_bytes{supabase_project_ref=\"$project\"}) / (node_memory_MemTotal_bytes{supabase_project_ref=\"$project\"} )) * 100",
           "format": "time_series",
           "hide": true,
           "intervalFactor": 1,
@@ -365,7 +365,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "100 - ((node_memory_MemAvailable_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} * 100) / node_memory_MemTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"})",
+          "expr": "100 - ((node_memory_MemAvailable_bytes{supabase_project_ref=\"$project\"} * 100) / node_memory_MemTotal_bytes{supabase_project_ref=\"$project\"})",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -450,7 +450,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "((node_memory_SwapTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_SwapFree_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) / (node_memory_SwapTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} )) * 100",
+          "expr": "((node_memory_SwapTotal_bytes{supabase_project_ref=\"$project\"} - node_memory_SwapFree_bytes{supabase_project_ref=\"$project\"}) / (node_memory_SwapTotal_bytes{supabase_project_ref=\"$project\"} )) * 100",
           "intervalFactor": 1,
           "refId": "A",
           "step": 240
@@ -533,7 +533,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "100 - ((node_filesystem_avail_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",mountpoint=\"/\",fstype!=\"rootfs\"} * 100) / node_filesystem_size_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",mountpoint=\"/\",fstype!=\"rootfs\"})",
+          "expr": "100 - ((node_filesystem_avail_bytes{supabase_project_ref=\"$project\",mountpoint=\"/\",fstype!=\"rootfs\"} * 100) / node_filesystem_size_bytes{supabase_project_ref=\"$project\",mountpoint=\"/\",fstype!=\"rootfs\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A",
@@ -614,7 +614,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "count(count(node_cpu_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}) by (cpu))",
+          "expr": "count(count(node_cpu_seconds_total{supabase_project_ref=\"$project\"}) by (cpu))",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "",
@@ -697,7 +697,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "node_memory_SwapTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+          "expr": "node_memory_SwapTotal_bytes{supabase_project_ref=\"$project\"}",
           "intervalFactor": 1,
           "refId": "A",
           "step": 240
@@ -783,7 +783,7 @@
             "uid": "grafana_prometheus"
           },
           "exemplar": false,
-          "expr": "node_filesystem_size_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",mountpoint=\"/\",fstype!=\"rootfs\"}",
+          "expr": "node_filesystem_size_bytes{supabase_project_ref=\"$project\",mountpoint=\"/\",fstype!=\"rootfs\"}",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -873,7 +873,7 @@
             "uid": "grafana_prometheus"
           },
           "exemplar": false,
-          "expr": "node_filesystem_size_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",mountpoint=\"/data\",fstype!=\"rootfs\"}",
+          "expr": "node_filesystem_size_bytes{supabase_project_ref=\"$project\",mountpoint=\"/data\",fstype!=\"rootfs\"}",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -959,7 +959,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "node_memory_MemTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+          "expr": "node_memory_MemTotal_bytes{supabase_project_ref=\"$project\"}",
           "intervalFactor": 1,
           "refId": "A",
           "step": 240
@@ -1360,7 +1360,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "sum by (instance)(rate(node_cpu_seconds_total{mode=\"system\",supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])) * 100",
+          "expr": "sum by (instance)(rate(node_cpu_seconds_total{mode=\"system\",supabase_project_ref=\"$project\"}[$custom_rate_interval])) * 100",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -1373,7 +1373,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "sum by (instance)(rate(node_cpu_seconds_total{mode='user',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])) * 100",
+          "expr": "sum by (instance)(rate(node_cpu_seconds_total{mode='user',supabase_project_ref=\"$project\"}[$custom_rate_interval])) * 100",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -1386,7 +1386,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "sum by (instance)(rate(node_cpu_seconds_total{mode='iowait',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])) * 100",
+          "expr": "sum by (instance)(rate(node_cpu_seconds_total{mode='iowait',supabase_project_ref=\"$project\"}[$custom_rate_interval])) * 100",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Busy Iowait",
@@ -1398,7 +1398,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "sum by (instance)(rate(node_cpu_seconds_total{mode=~\".*irq\",supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])) * 100",
+          "expr": "sum by (instance)(rate(node_cpu_seconds_total{mode=~\".*irq\",supabase_project_ref=\"$project\"}[$custom_rate_interval])) * 100",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Busy IRQs",
@@ -1410,7 +1410,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "sum (rate(node_cpu_seconds_total{mode!='idle',mode!='user',mode!='system',mode!='iowait',mode!='irq',mode!='softirq',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])) * 100",
+          "expr": "sum (rate(node_cpu_seconds_total{mode!='idle',mode!='user',mode!='system',mode!='iowait',mode!='irq',mode!='softirq',supabase_project_ref=\"$project\"}[$custom_rate_interval])) * 100",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Busy Other",
@@ -1422,7 +1422,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='idle',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])) * 100",
+          "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='idle',supabase_project_ref=\"$project\"}[$custom_rate_interval])) * 100",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Idle",
@@ -1895,7 +1895,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "node_memory_MemTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+          "expr": "node_memory_MemTotal_bytes{supabase_project_ref=\"$project\"}",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -1908,7 +1908,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "node_memory_MemTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_MemFree_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - (node_memory_Cached_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} + node_memory_Buffers_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"})",
+          "expr": "node_memory_MemTotal_bytes{supabase_project_ref=\"$project\"} - node_memory_MemFree_bytes{supabase_project_ref=\"$project\"} - (node_memory_Cached_bytes{supabase_project_ref=\"$project\"} + node_memory_Buffers_bytes{supabase_project_ref=\"$project\"})",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -1921,7 +1921,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "node_memory_Cached_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} + node_memory_Buffers_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+          "expr": "node_memory_Cached_bytes{supabase_project_ref=\"$project\"} + node_memory_Buffers_bytes{supabase_project_ref=\"$project\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "RAM Cache + Buffer",
@@ -1933,7 +1933,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "node_memory_MemFree_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+          "expr": "node_memory_MemFree_bytes{supabase_project_ref=\"$project\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "RAM Free",
@@ -1945,7 +1945,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "(node_memory_SwapTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_SwapFree_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"})",
+          "expr": "(node_memory_SwapTotal_bytes{supabase_project_ref=\"$project\"} - node_memory_SwapFree_bytes{supabase_project_ref=\"$project\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "SWAP Used",
@@ -2405,7 +2405,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "rate(node_network_receive_bytes_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])*8",
+          "expr": "rate(node_network_receive_bytes_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])*8",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "recv {{device}}",
@@ -2417,7 +2417,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "rate(node_network_transmit_bytes_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])*8",
+          "expr": "rate(node_network_transmit_bytes_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])*8",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "trans {{device}} ",
@@ -2533,7 +2533,7 @@
             "type": "prometheus",
             "uid": "grafana_prometheus"
           },
-          "expr": "100 - ((node_filesystem_avail_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device!~'rootfs'} * 100) / node_filesystem_size_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device!~'rootfs'})",
+          "expr": "100 - ((node_filesystem_avail_bytes{supabase_project_ref=\"$project\",device!~'rootfs'} * 100) / node_filesystem_size_bytes{supabase_project_ref=\"$project\",device!~'rootfs'})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Disk mounted at {{mountpoint}}",
@@ -2646,7 +2646,7 @@
             "uid": "grafana_prometheus"
           },
           "exemplar": false,
-          "expr": "pg_database_size_mb{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+          "expr": "pg_database_size_mb{supabase_project_ref=\"$project\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -2760,7 +2760,7 @@
             "uid": "grafana_prometheus"
           },
           "exemplar": false,
-          "expr": "pg_stat_database_num_backends{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+          "expr": "pg_stat_database_num_backends{supabase_project_ref=\"$project\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -2774,7 +2774,7 @@
             "uid": "grafana_prometheus"
           },
           "exemplar": false,
-          "expr": "sum(supavisor_connections_active{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"})",
+          "expr": "sum(supavisor_connections_active{supabase_project_ref=\"$project\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -2788,7 +2788,7 @@
             "uid": "grafana_prometheus"
           },
           "exemplar": false,
-          "expr": "pgbouncer_used_clients{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+          "expr": "pgbouncer_used_clients{supabase_project_ref=\"$project\"}",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -2803,7 +2803,7 @@
             "uid": "grafana_prometheus"
           },
           "exemplar": false,
-          "expr": "sum by (Name) (pgbouncer_pools_client_waiting_connections{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"})",
+          "expr": "sum by (Name) (pgbouncer_pools_client_waiting_connections{supabase_project_ref=\"$project\"})",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -2896,7 +2896,7 @@
             "uid": "grafana_prometheus"
           },
           "exemplar": false,
-          "expr": "pg_up{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+          "expr": "pg_up{supabase_project_ref=\"$project\"}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -2985,7 +2985,7 @@
             "uid": "grafana_prometheus"
           },
           "exemplar": false,
-          "expr": "pgbouncer_up{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+          "expr": "pgbouncer_up{supabase_project_ref=\"$project\"}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -3103,7 +3103,7 @@
             "uid": "grafana_prometheus"
           },
           "exemplar": false,
-          "expr": "rate(supabase_usage_metrics_user_queries_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+          "expr": "rate(supabase_usage_metrics_user_queries_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -3117,7 +3117,7 @@
             "uid": "grafana_prometheus"
           },
           "exemplar": false,
-          "expr": "rate(pg_stat_statements_total_queries{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+          "expr": "rate(pg_stat_statements_total_queries{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
           "hide": false,
           "interval": "",
           "legendFormat": "Total no. of queries",
@@ -3129,7 +3129,7 @@
             "uid": "grafana_prometheus"
           },
           "exemplar": false,
-          "expr": "rate(pg_stat_statements_total_time_seconds{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+          "expr": "rate(pg_stat_statements_total_time_seconds{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -3246,7 +3246,7 @@
             "uid": "grafana_prometheus"
           },
           "exemplar": false,
-          "expr": "rate(pg_stat_database_xact_commit_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+          "expr": "rate(pg_stat_database_xact_commit_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -3260,7 +3260,7 @@
             "uid": "grafana_prometheus"
           },
           "exemplar": false,
-          "expr": "rate(pg_stat_database_xact_rollback_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+          "expr": "rate(pg_stat_database_xact_rollback_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -3275,7 +3275,7 @@
             "uid": "grafana_prometheus"
           },
           "exemplar": false,
-          "expr": "rate(pg_stat_database_deadlocks_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+          "expr": "rate(pg_stat_database_deadlocks_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -3397,7 +3397,7 @@
             "uid": "grafana_prometheus"
           },
           "exemplar": false,
-          "expr": "rate(pg_stat_database_conflicts_confl_tablespace_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+          "expr": "rate(pg_stat_database_conflicts_confl_tablespace_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -3411,7 +3411,7 @@
             "uid": "grafana_prometheus"
           },
           "exemplar": false,
-          "expr": "rate(pg_stat_database_conflicts_confl_lock_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+          "expr": "rate(pg_stat_database_conflicts_confl_lock_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -3426,7 +3426,7 @@
             "uid": "grafana_prometheus"
           },
           "exemplar": false,
-          "expr": "rate(pg_stat_database_conflicts_confl_snapshot_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+          "expr": "rate(pg_stat_database_conflicts_confl_snapshot_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -3441,7 +3441,7 @@
             "uid": "grafana_prometheus"
           },
           "exemplar": false,
-          "expr": "rate(pg_stat_database_conflicts_confl_bufferpin_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+          "expr": "rate(pg_stat_database_conflicts_confl_bufferpin_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -3456,7 +3456,7 @@
             "uid": "grafana_prometheus"
           },
           "exemplar": false,
-          "expr": "rate(pg_stat_database_conflicts_confl_deadlock_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+          "expr": "rate(pg_stat_database_conflicts_confl_deadlock_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -3551,7 +3551,7 @@
             "uid": "grafana_prometheus"
           },
           "exemplar": false,
-          "expr": "pg_settings_default_transaction_read_only{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+          "expr": "pg_settings_default_transaction_read_only{supabase_project_ref=\"$project\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -3642,7 +3642,7 @@
             "uid": "grafana_prometheus"
           },
           "exemplar": false,
-          "expr": "pg_status_in_recovery{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+          "expr": "pg_status_in_recovery{supabase_project_ref=\"$project\"}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -3692,7 +3692,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode=\"system\",supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])) * 100",
+              "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode=\"system\",supabase_project_ref=\"$project\"}[$custom_rate_interval])) * 100",
               "format": "time_series",
               "interval": "10s",
               "intervalFactor": 1,
@@ -3705,7 +3705,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='user',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])) * 100",
+              "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='user',supabase_project_ref=\"$project\"}[$custom_rate_interval])) * 100",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "User - Normal processes executing in user mode",
@@ -3717,7 +3717,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='nice',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])) * 100",
+              "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='nice',supabase_project_ref=\"$project\"}[$custom_rate_interval])) * 100",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Nice - Niced processes executing in user mode",
@@ -3729,7 +3729,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='idle',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])) * 100",
+              "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='idle',supabase_project_ref=\"$project\"}[$custom_rate_interval])) * 100",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Idle - Waiting for something to happen",
@@ -3741,7 +3741,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='iowait',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])) * 100",
+              "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='iowait',supabase_project_ref=\"$project\"}[$custom_rate_interval])) * 100",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Iowait - Waiting for I/O to complete",
@@ -3753,7 +3753,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='irq',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])) * 100",
+              "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='irq',supabase_project_ref=\"$project\"}[$custom_rate_interval])) * 100",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Irq - Servicing interrupts",
@@ -3765,7 +3765,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='softirq',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])) * 100",
+              "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='softirq',supabase_project_ref=\"$project\"}[$custom_rate_interval])) * 100",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Softirq - Servicing softirqs",
@@ -3777,7 +3777,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='steal',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])) * 100",
+              "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='steal',supabase_project_ref=\"$project\"}[$custom_rate_interval])) * 100",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Steal - Time spent in other operating systems when running in a virtualized environment",
@@ -3789,7 +3789,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='guest',supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])) * 100",
+              "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='guest',supabase_project_ref=\"$project\"}[$custom_rate_interval])) * 100",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Guest - Time spent running a virtual CPU for a guest operating system",
@@ -3831,7 +3831,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_MemTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_MemFree_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_Buffers_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_Cached_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_Slab_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_PageTables_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_SwapCached_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_MemTotal_bytes{supabase_project_ref=\"$project\"} - node_memory_MemFree_bytes{supabase_project_ref=\"$project\"} - node_memory_Buffers_bytes{supabase_project_ref=\"$project\"} - node_memory_Cached_bytes{supabase_project_ref=\"$project\"} - node_memory_Slab_bytes{supabase_project_ref=\"$project\"} - node_memory_PageTables_bytes{supabase_project_ref=\"$project\"} - node_memory_SwapCached_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -3844,7 +3844,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_PageTables_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_PageTables_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -3857,7 +3857,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_SwapCached_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_SwapCached_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "SwapCache - Memory that keeps track of pages that have been fetched from swap but not yet been modified",
@@ -3869,7 +3869,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_Slab_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_Slab_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -3882,7 +3882,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_Cached_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_Cached_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -3895,7 +3895,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_Buffers_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_Buffers_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -3908,7 +3908,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_MemFree_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_MemFree_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -3921,7 +3921,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "(node_memory_SwapTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"} - node_memory_SwapFree_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"})",
+              "expr": "(node_memory_SwapTotal_bytes{supabase_project_ref=\"$project\"} - node_memory_SwapFree_bytes{supabase_project_ref=\"$project\"})",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -3934,7 +3934,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_HardwareCorrupted_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_HardwareCorrupted_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -3975,7 +3975,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_network_receive_bytes_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])*8",
+              "expr": "rate(node_network_receive_bytes_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])*8",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Receive",
@@ -3987,7 +3987,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_network_transmit_bytes_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])*8",
+              "expr": "rate(node_network_transmit_bytes_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])*8",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Transmit",
@@ -4030,7 +4030,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_filesystem_size_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device!~'rootfs'} - node_filesystem_avail_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device!~'rootfs'}",
+              "expr": "node_filesystem_size_bytes{supabase_project_ref=\"$project\",device!~'rootfs'} - node_filesystem_avail_bytes{supabase_project_ref=\"$project\",device!~'rootfs'}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{mountpoint}}",
@@ -4072,7 +4072,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_disk_reads_completed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"$supabase_identifier\",device=~\"$diskdevices\"}[$custom_rate_interval])",
+              "expr": "rate(node_disk_reads_completed_total{supabase_project_ref=\"$project\", device=~\"$diskdevices\"}[$custom_rate_interval])",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Reads completed",
               "refId": "A",
@@ -4083,7 +4083,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_disk_writes_completed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"$supabase_identifier\",device=~\"$diskdevices\"}[$custom_rate_interval])",
+              "expr": "rate(node_disk_writes_completed_total{supabase_project_ref=\"$project\", device=~\"$diskdevices\"}[$custom_rate_interval])",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Writes completed",
               "refId": "B",
@@ -4125,7 +4125,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_disk_read_bytes_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device=~\"$diskdevices\"}[$custom_rate_interval])",
+              "expr": "rate(node_disk_read_bytes_total{supabase_project_ref=\"$project\",device=~\"$diskdevices\"}[$custom_rate_interval])",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -4138,7 +4138,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_disk_written_bytes_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device=~\"$diskdevices\"}[$custom_rate_interval])",
+              "expr": "rate(node_disk_written_bytes_total{supabase_project_ref=\"$project\",device=~\"$diskdevices\"}[$custom_rate_interval])",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -4181,7 +4181,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_disk_io_time_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device=~\"$diskdevices\"} [$custom_rate_interval])",
+              "expr": "rate(node_disk_io_time_seconds_total{supabase_project_ref=\"$project\",device=~\"$diskdevices\"} [$custom_rate_interval])",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -4234,7 +4234,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_Inactive_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_Inactive_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Inactive - Memory which has been less recently used.  It is more eligible to be reclaimed for other purposes",
@@ -4246,7 +4246,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_Active_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_Active_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Active - Memory that has been used more recently and usually not reclaimed unless absolutely necessary",
@@ -4283,7 +4283,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_Committed_AS_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_Committed_AS_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Committed_AS - Amount of memory presently allocated on the system",
@@ -4295,7 +4295,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_CommitLimit_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_CommitLimit_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "CommitLimit - Amount of  memory currently available to be allocated on the system",
@@ -4332,7 +4332,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_Inactive_file_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_Inactive_file_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -4345,7 +4345,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_Inactive_anon_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_Inactive_anon_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -4358,7 +4358,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_Active_file_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_Active_file_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -4371,7 +4371,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_Active_anon_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_Active_anon_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -4409,7 +4409,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_Writeback_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_Writeback_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Writeback - Memory which is actively being written back to disk",
@@ -4421,7 +4421,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_WritebackTmp_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_WritebackTmp_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "WritebackTmp - Memory used by FUSE for temporary writeback buffers",
@@ -4433,7 +4433,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_Dirty_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_Dirty_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Dirty - Memory which is waiting to get written back to the disk",
@@ -4470,7 +4470,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_Mapped_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_Mapped_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Mapped - Used memory in mapped pages files which have been mmaped, such as libraries",
@@ -4482,7 +4482,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_Shmem_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_Shmem_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Shmem - Used shared memory (shared between several processes, thus including RAM disks)",
@@ -4494,7 +4494,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_ShmemHugePages_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_ShmemHugePages_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -4507,7 +4507,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_ShmemPmdMapped_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_ShmemPmdMapped_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -4545,7 +4545,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_SUnreclaim_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_SUnreclaim_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "SUnreclaim - Part of Slab, that cannot be reclaimed on memory pressure",
@@ -4557,7 +4557,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_SReclaimable_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_SReclaimable_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "SReclaimable - Part of Slab, that might be reclaimed, such as caches",
@@ -4594,7 +4594,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_VmallocChunk_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_VmallocChunk_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -4607,7 +4607,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_VmallocTotal_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_VmallocTotal_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -4620,7 +4620,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_VmallocUsed_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_VmallocUsed_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -4658,7 +4658,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_Bounce_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_Bounce_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Bounce - Memory used for block device bounce buffers",
@@ -4695,7 +4695,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_AnonHugePages_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_AnonHugePages_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "AnonHugePages - Memory in anonymous huge pages",
@@ -4707,7 +4707,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_AnonPages_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_AnonPages_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "AnonPages - Memory in user pages not backed by files",
@@ -4744,7 +4744,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_KernelStack_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_KernelStack_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "KernelStack - Kernel memory stack. This is not reclaimable",
@@ -4756,7 +4756,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_Percpu_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_Percpu_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -4794,7 +4794,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_HugePages_Free{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_HugePages_Free{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "HugePages_Free - Huge pages in the pool that are not yet allocated",
@@ -4806,7 +4806,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_HugePages_Rsvd{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_HugePages_Rsvd{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "HugePages_Rsvd - Huge pages for which a commitment to allocate from the pool has been made, but no allocation has yet been made",
@@ -4818,7 +4818,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_HugePages_Surp{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_HugePages_Surp{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "HugePages_Surp - Huge pages in the pool above the value in /proc/sys/vm/nr_hugepages",
@@ -4855,7 +4855,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_HugePages_Total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_HugePages_Total{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "HugePages - Total size of the pool of huge pages",
@@ -4867,7 +4867,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_Hugepagesize_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_Hugepagesize_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Hugepagesize - Huge Page size",
@@ -4904,7 +4904,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_Unevictable_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_Unevictable_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Unevictable - Amount of unevictable memory that can't be swapped out for a variety of reasons",
@@ -4916,7 +4916,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_Mlocked_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_Mlocked_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "MLocked - Size of pages locked to memory using the mlock() system call",
@@ -4953,7 +4953,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_memory_NFS_Unstable_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_memory_NFS_Unstable_bytes{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "NFS Unstable - Memory in NFS pages sent to the server, but not yet commited to the storage",
@@ -5004,7 +5004,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_vmstat_pgpgin{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_vmstat_pgpgin{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Pagesin - Page in operations",
@@ -5016,7 +5016,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_vmstat_pgpgout{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_vmstat_pgpgout{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Pagesout - Page out operations",
@@ -5053,7 +5053,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_vmstat_pswpin{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_vmstat_pswpin{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Pswpin - Pages swapped in",
@@ -5065,7 +5065,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_vmstat_pswpout{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_vmstat_pswpout{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Pswpout - Pages swapped out",
@@ -5102,7 +5102,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_vmstat_pgfault{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_vmstat_pgfault{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Pgfault - Page major and minor fault operations",
@@ -5114,7 +5114,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_vmstat_pgmajfault{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_vmstat_pgmajfault{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Pgmajfault - Major page fault operations",
@@ -5126,7 +5126,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_vmstat_pgfault{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])  - rate(node_vmstat_pgmajfault{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_vmstat_pgfault{supabase_project_ref=\"$project\"}[$custom_rate_interval])  - rate(node_vmstat_pgmajfault{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Pgminfault - Minor page fault operations",
@@ -5163,7 +5163,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_vmstat_oom_kill{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_vmstat_oom_kill{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -5227,7 +5227,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(process_virtual_memory_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(process_virtual_memory_bytes{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "hide": false,
               "interval": "",
               "intervalFactor": 1,
@@ -5240,7 +5240,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "process_resident_memory_max_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "process_resident_memory_max_bytes{supabase_project_ref=\"$project\"}",
               "hide": false,
               "interval": "",
               "intervalFactor": 1,
@@ -5253,7 +5253,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(process_virtual_memory_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(process_virtual_memory_bytes{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "hide": false,
               "interval": "",
               "intervalFactor": 1,
@@ -5266,7 +5266,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(process_virtual_memory_max_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(process_virtual_memory_max_bytes{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "hide": false,
               "interval": "",
               "intervalFactor": 1,
@@ -5318,7 +5318,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_load1{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_load1{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Load 1m",
@@ -5330,7 +5330,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_load5{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_load5{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Load 5m",
@@ -5342,7 +5342,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_load15{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_load15{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Load 15m",
@@ -5379,7 +5379,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(process_cpu_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(process_cpu_seconds_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -5416,7 +5416,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "process_max_fds{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "process_max_fds{supabase_project_ref=\"$project\"}",
               "interval": "",
               "intervalFactor": 1,
               "legendFormat": "Maximum open file descriptors",
@@ -5428,7 +5428,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "process_open_fds{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "process_open_fds{supabase_project_ref=\"$project\"}",
               "interval": "",
               "intervalFactor": 1,
               "legendFormat": "Open file descriptors",
@@ -5484,7 +5484,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_disk_reads_completed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_disk_reads_completed_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Reads completed",
               "refId": "A",
@@ -5495,7 +5495,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_disk_writes_completed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_disk_writes_completed_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Writes completed",
               "refId": "B",
@@ -5537,7 +5537,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_disk_read_bytes_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_disk_read_bytes_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Read bytes",
@@ -5549,7 +5549,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_disk_written_bytes_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_disk_written_bytes_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Written bytes",
@@ -5591,7 +5591,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_disk_read_time_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval]) / rate(node_disk_reads_completed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_disk_read_time_seconds_total{supabase_project_ref=\"$project\"}[$custom_rate_interval]) / rate(node_disk_reads_completed_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "hide": false,
               "interval": "",
               "intervalFactor": 4,
@@ -5604,7 +5604,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_disk_write_time_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval]) / rate(node_disk_writes_completed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_disk_write_time_seconds_total{supabase_project_ref=\"$project\"}[$custom_rate_interval]) / rate(node_disk_writes_completed_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "hide": false,
               "interval": "",
               "intervalFactor": 1,
@@ -5647,7 +5647,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_disk_io_time_weighted_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_disk_io_time_weighted_seconds_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "interval": "",
               "intervalFactor": 1,
               "legendFormat": "{{device}}",
@@ -5689,7 +5689,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_disk_reads_merged_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_disk_reads_merged_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Read merged",
               "refId": "A",
@@ -5700,7 +5700,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_disk_writes_merged_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_disk_writes_merged_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Write merged",
               "refId": "B",
@@ -5741,7 +5741,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_disk_io_time_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_disk_io_time_seconds_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "interval": "",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - IO",
@@ -5753,7 +5753,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_disk_discard_time_seconds_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_disk_discard_time_seconds_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "interval": "",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - discard",
@@ -5795,7 +5795,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_disk_io_now{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[5m])",
+              "expr": "rate(node_disk_io_now{supabase_project_ref=\"$project\"}[5m])",
               "interval": "",
               "intervalFactor": 4,
               "legendFormat": "{{device}} - IO now",
@@ -5837,7 +5837,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_disk_discards_completed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_disk_discards_completed_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "interval": "",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Discards completed",
@@ -5849,7 +5849,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_disk_discards_merged_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_disk_discards_merged_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "interval": "",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Discards merged",
@@ -5906,7 +5906,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_filesystem_avail_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device!~'rootfs'}",
+              "expr": "node_filesystem_avail_bytes{supabase_project_ref=\"$project\",device!~'rootfs'}",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -5920,7 +5920,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_filesystem_free_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device!~'rootfs'}",
+              "expr": "node_filesystem_free_bytes{supabase_project_ref=\"$project\",device!~'rootfs'}",
               "format": "time_series",
               "hide": true,
               "intervalFactor": 1,
@@ -5933,7 +5933,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_filesystem_size_bytes{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device!~'rootfs'}",
+              "expr": "node_filesystem_size_bytes{supabase_project_ref=\"$project\",device!~'rootfs'}",
               "format": "time_series",
               "hide": true,
               "intervalFactor": 1,
@@ -5975,7 +5975,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_filesystem_files_free{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device!~'rootfs'}",
+              "expr": "node_filesystem_files_free{supabase_project_ref=\"$project\",device!~'rootfs'}",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -6017,7 +6017,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_filesystem_files{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device!~'rootfs'}",
+              "expr": "node_filesystem_files{supabase_project_ref=\"$project\",device!~'rootfs'}",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -6060,7 +6060,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_filesystem_readonly{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device!~'rootfs'}",
+              "expr": "node_filesystem_readonly{supabase_project_ref=\"$project\",device!~'rootfs'}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{mountpoint}} - ReadOnly",
@@ -6072,7 +6072,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_filesystem_device_error{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\",device!~'rootfs',fstype!~'tmpfs'}",
+              "expr": "node_filesystem_device_error{supabase_project_ref=\"$project\",device!~'rootfs',fstype!~'tmpfs'}",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -6123,7 +6123,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_network_receive_packets_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_network_receive_packets_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -6136,7 +6136,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_network_transmit_packets_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_network_transmit_packets_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -6173,7 +6173,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_network_receive_errs_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_network_receive_errs_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Receive errors",
@@ -6185,7 +6185,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_network_transmit_errs_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_network_transmit_errs_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Rransmit errors",
@@ -6221,7 +6221,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_network_receive_drop_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_network_receive_drop_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Receive drop",
@@ -6233,7 +6233,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_network_transmit_drop_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_network_transmit_drop_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Transmit drop",
@@ -6269,7 +6269,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_network_receive_compressed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_network_receive_compressed_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Receive compressed",
@@ -6281,7 +6281,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_network_transmit_compressed_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_network_transmit_compressed_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Transmit compressed",
@@ -6317,7 +6317,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_network_receive_multicast_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_network_receive_multicast_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Receive multicast",
@@ -6353,7 +6353,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_network_receive_fifo_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_network_receive_fifo_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Receive fifo",
@@ -6365,7 +6365,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_network_transmit_fifo_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_network_transmit_fifo_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Transmit fifo",
@@ -6401,7 +6401,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_network_receive_frame_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_network_receive_frame_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -6438,7 +6438,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_network_transmit_carrier_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_network_transmit_carrier_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Statistic transmit_carrier",
@@ -6474,7 +6474,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "rate(node_network_transmit_colls_total{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}[$custom_rate_interval])",
+              "expr": "rate(node_network_transmit_colls_total{supabase_project_ref=\"$project\"}[$custom_rate_interval])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{device}} - Transmit colls",
@@ -6525,7 +6525,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_scrape_collector_duration_seconds{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_scrape_collector_duration_seconds{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -6564,7 +6564,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_scrape_collector_success{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_scrape_collector_success{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -6578,7 +6578,7 @@
                 "type": "prometheus",
                 "uid": "grafana_prometheus"
               },
-              "expr": "node_textfile_scrape_error{supabase_project_ref=\"$project\", supabase_identifier=~\"${supabase_identifier:pipe}\"}",
+              "expr": "node_textfile_scrape_error{supabase_project_ref=\"$project\"}",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -6675,29 +6675,6 @@
         ],
         "query": "5m,10m,15m",
         "type": "custom"
-      },
-      {
-        "allowCustomValue": false,
-        "current": {
-          "text": "hwlsqrpfedewxklmmapg",
-          "value": "hwlsqrpfedewxklmmapg"
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "grafana_prometheus"
-        },
-        "definition": "label_values(supabase_identifier)",
-        "includeAll": false,
-        "label": "Supabase Identifier",
-        "name": "supabase_identifier",
-        "options": [],
-        "query": {
-          "query": "label_values(supabase_identifier)",
-          "refId": "Prometheus-supabase_identifier-Variable-Query"
-        },
-        "refresh": 1,
-        "regex": "",
-        "type": "query"
       }
     ]
   },

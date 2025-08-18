@@ -6606,16 +6606,19 @@
     "list": [
       {
         "current": {
-          "text": "All",
-          "value": "$__all"
+          "selected": false,
+          "text": "",
+          "value": ""
         },
+        "multi": false,
+        "allValue": null,
         "datasource": {
           "type": "prometheus",
           "uid": "grafana_prometheus"
         },
         "definition": "label_values(supabase_project_ref)",
-        "includeAll": true,
-        "label": "Supabase Project",
+        "includeAll": false,
+        "label": "Supabase Project/Branch",
         "name": "project",
         "options": [],
         "query": {

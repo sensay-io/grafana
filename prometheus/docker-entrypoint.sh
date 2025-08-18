@@ -39,9 +39,12 @@ echo "Generating Prometheus configuration from SUPABASE_PROJECTS..."
 # Generate Supabase jobs from SUPABASE_PROJECTS
 supabase_jobs=$(generate_supabase_jobs "$SUPABASE_PROJECTS")
 
-# Replace placeholder with generated jobs
-sed -e "s|# SUPABASE_JOBS_PLACEHOLDER|${supabase_jobs}|g" \
-    /etc/prometheus/prom.yml.tpl > /etc/prometheus/prom.yml
+# Create config by replacing placeholder with generated jobs
+# Use awk to avoid sed escaping issues with special characters
+awk -v jobs="$supabase_jobs" '
+/# SUPABASE_JOBS_PLACEHOLDER/ { print jobs; next }
+{ print }
+' /etc/prometheus/prom.yml.tpl > /etc/prometheus/prom.yml
 
 echo "Generated Prometheus configuration:"
 cat /etc/prometheus/prom.yml

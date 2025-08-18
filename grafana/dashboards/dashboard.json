@@ -6616,17 +6616,17 @@
           "type": "prometheus",
           "uid": "grafana_prometheus"
         },
-        "definition": "label_values(supabase_project_ref)",
+        "definition": "label_values(project_display)",
         "includeAll": false,
         "label": "Supabase Project/Branch",
         "name": "project",
         "options": [],
         "query": {
-          "query": "label_values(supabase_project_ref)",
+          "query": "label_values(project_display)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": "/.*\\((.*)\\)$/",
         "type": "query"
       },
       {

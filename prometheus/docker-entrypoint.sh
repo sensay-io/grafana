@@ -2,7 +2,7 @@
 set -eu
 
 # Require the new configuration format
-: "${SUPABASE_PROJECTS:?Set SUPABASE_PROJECTS env var (format: project_id:KEY_REF;project_id2:KEY_REF2)}"
+: "${SUPABASE_PROJECTS:?Set SUPABASE_PROJECTS env var (format: project_id:KEY_REF:DISPLAY_NAME;project_id2:KEY_REF2:DISPLAY_NAME2)}"
 
 # Function to generate Supabase job configuration
 generate_supabase_jobs() {
@@ -10,9 +10,14 @@ generate_supabase_jobs() {
     local jobs=""
     
     # Split projects by semicolon and process each
-    echo "$projects" | tr ';' '\n' | while IFS=':' read -r project_id key_ref; do
+    echo "$projects" | tr ';' '\n' | while IFS=':' read -r project_id key_ref display_name; do
         # Skip empty lines
         [ -z "$project_id" ] && continue
+        
+        # Use project_id as display name if not provided (backward compatibility)
+        if [ -z "$display_name" ]; then
+            display_name="$project_id"
+        fi
         
         # Get the secret key value from the environment variable reference
         key_value=$(eval echo "\${$key_ref}")
@@ -30,6 +35,13 @@ generate_supabase_jobs() {
       password: ${key_value}
     static_configs:
       - targets: ["${project_id}.supabase.co"]
+    metric_relabel_configs:
+      - source_labels: [supabase_project_ref]
+        target_label: project_name
+        replacement: '${display_name}'
+      - source_labels: [supabase_project_ref]
+        target_label: project_display
+        replacement: '${display_name} (${project_id})'
 EOF
     done
 }

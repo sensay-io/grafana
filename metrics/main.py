@@ -27,6 +27,7 @@ async def fetch_linear_metrics():
     api_key = os.getenv("LINEAR_API_KEY")
     
     if not api_key:
+        print("WARNING: LINEAR_API_KEY not set - Linear metrics will be empty")
         return {}
     
     try:
@@ -44,7 +45,7 @@ async def fetch_linear_metrics():
                     nodes {
                         id
                         name
-                        issues(filter: { state: { type: { nin: ["completed", "canceled"] } } }) {
+                        issues(filter: { state: { type: { nin: ["completed", "canceled"] } } }, first: 1000) {
                             nodes {
                                 id
                             }
@@ -86,4 +87,5 @@ async def health():
     return {"status": "healthy", "timestamp": time.time()}
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    port = int(os.getenv("PORT", 8000))
+    uvicorn.run(app, host="::", port=port)

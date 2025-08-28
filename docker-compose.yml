@@ -12,6 +12,8 @@ services:
     volumes:
       - prometheus_data:/prometheus
     environment: {}
+    depends_on:
+      - metrics
 
   loki:
     build:

@@ -6,16 +6,16 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 
-  - job_name: 'example_api'
-    scheme: http
-    static_configs:
-      - targets: ['example_api:9091']
+  # - job_name: 'example_api'
+  #   scheme: http
+  #   static_configs:
+  #     - targets: ['example_api:9091']
 
   - job_name: 'metrics-server'
     scheme: http
     static_configs:
       - targets: ['metrics:8000']
-    scrape_interval: 30s
+    scrape_interval: 60s
 
   #  ? TODO: add your services here
   # - job_name: 'your-job-name'

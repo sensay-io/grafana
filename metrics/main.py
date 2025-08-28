@@ -27,6 +27,7 @@ async def fetch_linear_metrics():
     api_key = os.getenv("LINEAR_API_KEY")
     
     if not api_key:
+        print("WARNING: LINEAR_API_KEY not set - Linear metrics will be empty")
         return {}
     
     try:
@@ -44,7 +45,7 @@ async def fetch_linear_metrics():
                     nodes {
                         id
                         name
-                        issues(filter: { state: { type: { nin: ["completed", "canceled"] } } }) {
+                        issues(filter: { state: { type: { nin: ["completed", "canceled"] } } }, first: 1000) {
                             nodes {
                                 id
                             }

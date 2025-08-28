@@ -14,7 +14,7 @@ scrape_configs:
   - job_name: 'metrics-server'
     scheme: http
     static_configs:
-      - targets: ['metrics:8000']
+      - targets: ['grafana-metrics-server:8000']
     scrape_interval: 60s
 
   #  ? TODO: add your services here

@@ -1,0 +1,14 @@
+[build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3
+
+[variables]
+LINEAR_API_KEY = { required = true }
+
+[[services]]
+internalPort = 8000
+protocol = "tcp"

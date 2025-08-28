@@ -62,6 +62,15 @@ services:
       - TEMPO_URL=http://tempo:4318
       - TEMPO_SERVICE_NAME=example_api
 
+  metrics:
+    build:
+      context: ./metrics
+      dockerfile: dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - LINEAR_API_KEY=${LINEAR_API_KEY}
+
 volumes: 
   prometheus_data:
   loki_data:

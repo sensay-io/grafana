@@ -17,6 +17,11 @@ scrape_configs:
       - targets: ['grafana-metrics-server:8080']
     scrape_interval: 60s
 
+  - job_name: 'pushgateway'
+    honor_labels: true
+    static_configs:
+      - targets: ['${PUSHGATEWAY_HOST}:${PUSHGATEWAY_PORT}']
+
   #  ? TODO: add your services here
   # - job_name: 'your-job-name'
   #   scheme: https

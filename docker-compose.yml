@@ -73,6 +73,13 @@ services:
     environment:
       - LINEAR_API_KEY=${LINEAR_API_KEY}
 
+  pushgateway:
+    build:
+      context: ./pushgateway
+      dockerfile: dockerfile
+    ports:
+      - "9091:90901"
+
 volumes: 
   prometheus_data:
   loki_data:

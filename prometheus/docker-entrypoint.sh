@@ -6,24 +6,24 @@ set -eu
 
 # Function to generate Supabase job configuration
 generate_supabase_jobs() {
-    local projects="$1"
-    local jobs=""
-    
-    # Split projects by semicolon and process each
-    echo "$projects" | tr ';' '\n' | while IFS=':' read -r project_id key_ref display_name; do
-        # Skip empty lines
-        [ -z "$project_id" ] && continue
-        
-        # Use project_id as display name if not provided (backward compatibility)
-        if [ -z "$display_name" ]; then
-            display_name="$project_id"
-        fi
-        
-        # Get the secret key value from the environment variable reference
-        key_value=$(eval echo "\${$key_ref}")
-        
-        # Generate job configuration
-        cat << EOF
+  local projects="$1"
+  local jobs=""
+
+  # Split projects by semicolon and process each
+  echo "$projects" | tr ';' '\n' | while IFS=':' read -r project_id key_ref display_name; do
+    # Skip empty lines
+    [ -z "$project_id" ] && continue
+
+    # Use project_id as display name if not provided (backward compatibility)
+    if [ -z "$display_name" ]; then
+      display_name="$project_id"
+    fi
+
+    # Get the secret key value from the environment variable reference
+    key_value=$(eval echo "\${$key_ref}")
+
+    # Generate job configuration
+    cat <<EOF
 
   - job_name: supabase-${project_id}
     scheme: https
@@ -43,7 +43,7 @@ generate_supabase_jobs() {
         target_label: project_display
         replacement: '${display_name} (${project_id})'
 EOF
-    done
+  done
 }
 
 echo "Generating Prometheus configuration from SUPABASE_PROJECTS..."
@@ -56,7 +56,22 @@ supabase_jobs=$(generate_supabase_jobs "$SUPABASE_PROJECTS")
 awk -v jobs="$supabase_jobs" '
 /# SUPABASE_JOBS_PLACEHOLDER/ { print jobs; next }
 { print }
-' /etc/prometheus/prom.yml.tpl > /etc/prometheus/prom.yml
+' /etc/prometheus/prom.yml.tpl >/etc/prometheus/prom.yml
+
+# Escape for sed replacement (we use | as delimiter). Escape \, /, &, and |.
+sed_escape() {
+  printf '%s' "$1" | sed -e 's/[\/&|\\]/\\&/g'
+}
+
+PUSHGATEWAY_HOST_ESCAPED="$(sed_escape "$PUSHGATEWAY_HOST")"
+PUSHGATEWAY_PORT_ESCAPED="$(sed_escape "$PUSHGATEWAY_PORT")"
+PUSHGATEWAY_PASSWORD_ESCAPED="$(sed_escape "$PUSHGATEWAY_PASSWORD")"
+
+sed -i \
+  -e "s|\${PUSHGATEWAY_HOST}|${PUSHGATEWAY_HOST_ESCAPED}|g" \
+  -e "s|\${PUSHGATEWAY_PORT}|${PUSHGATEWAY_PORT_ESCAPED}|g" \
+  -e "s|\${PUSHGATEWAY_PASSWORD}|${PUSHGATEWAY_PASSWORD_ESCAPED}|g" \
+  /etc/prometheus/prom.yml
 
 echo "Generated Prometheus configuration:"
 cat /etc/prometheus/prom.yml

@@ -9,6 +9,9 @@ basic_auth_users:
   pusher: "$HASH"
 EOF
 
+echo "Generated Pushgateway configuration:"
+cat $WEBCFG
+
 exec /bin/pushgateway \
   --web.listen-address=[::]:9091 \
   --web.config.file="$WEBCFG"

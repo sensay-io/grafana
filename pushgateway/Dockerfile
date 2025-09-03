@@ -1,6 +1,6 @@
 FROM prom/pushgateway:v1.8.0
 
-ENV WEB_LISTEN_ADDR=[::]:9091
+COPY entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-EXPOSE 9091
-CMD [ "--web.listen-address=[::]:9091" ]
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]

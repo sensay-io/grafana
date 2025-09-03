@@ -21,6 +21,9 @@ scrape_configs:
     honor_labels: true
     static_configs:
       - targets: ['${PUSHGATEWAY_HOST}:${PUSHGATEWAY_PORT}']
+    basic_auth:
+      username: pusher
+      password: ${PUSHGATEWAY_PASSWORD}
 
   #  ? TODO: add your services here
   # - job_name: 'your-job-name'

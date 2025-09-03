@@ -1,6 +1,6 @@
 [build]
 builder = "dockerfile"
-dockerfilePath = "pushgateway/Dockerfile"
+dockerfilePath = "pushgateway/dockerfile"
 
 [deploy]
 restartPolicyType = "on_failure"
